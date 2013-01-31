@@ -1,0 +1,220 @@
+#ecocode_minify_log_grid .show-log-details .details-hide{ display: none;}
+#ecocode_minify_log_grid .show-log-details .details-show{ display: inline}
+#ecocode_minify_log_grid .show-log-details.details-visible .details-hide{ display: inline;}
+#ecocode_minify_log_grid .show-log-details.details-visible .details-show{ display: none}
+
+#ecocode_minify_log_grid .log-details td{
+	padding: 10px;
+}
+
+#ecocode_minify_log_grid tr.data-row[data-status^=error] .type{background-color: #FD8484;}
+#ecocode_minify_log_grid tr.data-row[data-status^=debug] .type{background-color: #E3F1F7;}
+
+.eco-hidden{
+	display: none;		
+}
+.ecocode-minify	label{
+	width: 100px;
+	display: inline-block;
+}
+.ecocode-minify	.checkbox{
+	margin-right: 5px;
+}
+.ecocode-minify	.input-formatting span{
+	margin-right: 10px;
+}
+.ecocode-minify	.input-holder{
+	margin-bottom: 10px;
+}
+.ecocode-minify	.input-holder select{
+	width: 250px;
+}
+.ecocode-minify	.splitspan{
+	position: absolute;
+	height: 100%;
+	min-height: 400px;
+	background-color: #FAFAFA;
+	box-sizing:border-box;
+	-moz-box-sizing:border-box; /* Firefox */
+	-webkit-box-sizing:border-box; /* Safari */
+    background: none repeat scroll 0 0 #FAFAFA;
+    border: 1px solid #D6D6D6;
+}
+.ecocode-minify	.splitspan .fieldset{
+	border: none;
+}
+.ecocode-minify	.splitspan .fieldset .tabs-horiz li{
+	 margin: 0 4px;
+}
+.ecocode-minify	#source-code{
+	width: 100%;
+	heigth: 100%;
+	resize: none;
+	padding: 0;
+	border: none;
+	outline: 1px solid #D6D6D6;
+}
+.ecocode-minify	#col-input{
+}
+.ecocode-minify	.content-holder{
+	position: relative;
+}
+
+.ecocode-minify .col-resize-handle{
+	position: absolute;
+	height: 100%;
+	background-color: #EEEEEE;
+	cursor: col-resize;
+	min-height: 400px;
+   }
+   
+.ecocode-minify	#col-output .output-container{
+	position: absolute;
+   	width: 100%;
+   	overflow-y: scroll;
+  	}
+.ecocode-minify	#col-output .js-file{
+   	border: 1px solid #D6D6D6;
+   	margin-bottom: 10px;
+}
+.ecocode-minify	#col-output .js-file .file-header,
+.ecocode-minify	#col-output .js-file .file-info{
+	padding: 5px;
+}
+.ecocode-minify	#col-output .js-file table.data-table{
+	width: 550px;
+}
+.ecocode-minify	#col-output .js-file table td{
+	margin-right: 10px;
+}
+.ecocode-minify	#col-output .js-file .file-path{
+	font-weight: bold;
+}
+.ecocode-minify	#col-output .has-warnings{
+	background-color: #F29000;
+	color: FFF;
+}
+.ecocode-minify	#col-output .has-errors{
+	background-color: #AA0000;
+	color: FFF;
+}
+.ecocode-minify	#col-output .output-container,
+.ecocode-minify	#col-output .output-header{
+	visibility: hidden;
+}
+.ecocode-minify	#col-output .process-info .data{
+	padding: 5px;
+}
+.ecocode-minify	#col-output .process-info .tabs-horiz{
+	margin-bottom: 0px;
+}
+.ecocode-minify	#col-output .file-info .tabs-horiz{
+	margin: 0 -5px 18px;
+}
+.ecocode-minify	#col-output.processing .output-container,
+.ecocode-minify	#col-output.processing .output-header{
+	visibility: visible;
+}
+.ecocode-minify	#col-output.compiling .file-status-holder{
+	display: inline;
+}
+.ecocode-minify	.file-status-holder .loading{
+	display: none;
+}
+.ecocode-minify	.file-status-holder .loading img{
+    vertical-align: middle;
+    width: 13px;
+}
+.file-status-holder{
+	display: none;
+}
+.file-status{
+	font-weight: bold;
+}
+.js-file.js-tab-content{
+	background-color: none;
+}
+.js-file .file-header{
+	padding: 5px;
+}
+.js-file[data-status=success] .file-header{
+	background-color: #00C403;
+}
+.js-file[data-status=success] .file-status{
+	color: #468847;
+}
+.js-file[data-status=warning] .file-header{
+	background-color: #FDF395;
+}
+.js-file[data-status=warning] .file-status{
+	color: #C09853;
+}
+.js-file[data-status=error] .file-header{
+	background-color: #FD8484;
+}
+.js-file[data-status=error] .file-status{
+	color: #B94A48;
+}
+.js-file[data-status=processing] .file-header{
+	
+}
+.js-file[data-status=processing] .file-status-holder .loading{
+	display: inline;
+}
+
+
+#js-files[data-key=success] .js-file{
+	display: none;
+}
+#js-files[data-key=success] .js-file[data-status=success]{
+	display: block;
+}
+#js-files[data-key=warning] .js-file{
+	display: none;
+}
+#js-files[data-key=warning] .js-file[data-status=warning]{
+	display: block;
+}
+#js-files[data-key=error] .js-file{
+	display: none;
+}
+#js-files[data-key=error] .js-file[data-status=error]{
+	display: block;
+}
+#js-files[data-key=processing] .js-file{
+	display: none;
+}
+#js-files[data-key=processing] .js-file[data-status=processing]{
+	display: block;
+}
+
+#js-files .js-file .file-info .tabs-horiz{
+	display: none;
+}
+#js-files .js-file[data-status=success] .file-info .tabs-horiz,
+#js-files .js-file[data-status=error] .file-info .tabs-horiz,
+#js-files .js-file[data-status=warning] .file-info .tabs-horiz{
+	display: block;
+}
+#js-files .js-file .file-actions{
+	float: right;
+	
+}
+#js-files .js-file .file-actions .action{
+	cursor: pointer;
+	vertical-align: middle;
+}
+#js-files .js-file .file-actions .file-reload{
+	display: none;
+}
+#js-files .js-file[data-status=success] .file-reload,
+#js-files .js-file[data-status=error] .file-reload,
+#js-files .js-file[data-status=warning] .file-reload{
+	display: inline;
+}
+
+
+.ecocode-minify input, .ecocode-minify textarea, .ecocode-minify code {
+    font-family: 'Lucida Sans Typewriter','Courier New',Courier,Fixed,monospace;
+	word-wrap: break-word;
+}

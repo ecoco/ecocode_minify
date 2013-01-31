@@ -1,0 +1,258 @@
+.eco-hidden{
+	display: none;		
+}
+.ecocode-minify	label{
+	width: 100px;
+	display: inline-block;
+}
+.ecocode-minify	.checkbox{
+	margin-right: 5px;
+}
+.ecocode-minify	.input-formatting span{
+	margin-right: 10px;
+}
+.ecocode-minify	.input-holder{
+	margin-bottom: 10px;
+}
+.ecocode-minify	.input-holder.file-path{
+	display: none;
+}
+.ecocode-minify	#splitspan-holder[data-option="add_file"] .input-holder.file-path{
+	display: block;
+}
+.ecocode-minify	#splitspan-holder .custom-code{
+	visibility: hidden;
+}
+.ecocode-minify	#splitspan-holder[data-option="custom"] .custom-code{
+	visibility: visible;
+}
+
+.ecocode-minify	#compiling-options #get-js-files{
+	display: none;
+}
+.ecocode-minify	#splitspan-holder[data-option="all"] #get-js-files,
+.ecocode-minify	#splitspan-holder[data-option="main_js"] #get-js-files,
+.ecocode-minify	#splitspan-holder[data-option="skin_frontend_js"] #get-js-files,
+.ecocode-minify	#splitspan-holder[data-option="skin_adminhtml_js"] #get-js-files{
+	display: inline;
+}
+
+.ecocode-minify	#compiling-options #compile-custom{
+	display: none;
+}
+.ecocode-minify	#splitspan-holder[data-option="custom"] #compile-custom{
+	display: inline;
+}
+.ecocode-minify	#splitspan-holder[data-option="custom"] #compiling-start{
+	display: none;
+}
+
+.ecocode-minify	#compiling-options .input-holder select{
+	width: 250px;
+	height: 21px;
+}
+
+.ecocode-minify	.input-holder input[type="text"]{
+	height: 19px;
+	width: 248px;
+    border-color: #AAAAAA #C8C8C8 #C8C8C8 #AAAAAA;
+    border-style: solid;
+    border-width: 1px;	
+}
+.ecocode-minify	.splitspan{
+	position: absolute;
+	height: 100%;
+	min-height: 400px;
+	background-color: #FAFAFA;
+	box-sizing:border-box;
+	-moz-box-sizing:border-box; /* Firefox */
+	-webkit-box-sizing:border-box; /* Safari */
+    background: none repeat scroll 0 0 #FAFAFA;
+    border: 1px solid #D6D6D6;
+}
+.ecocode-minify	.splitspan .fieldset{
+	border: none;
+}
+.ecocode-minify	.splitspan .fieldset .tabs-horiz li{
+	 margin: 0 4px;
+}
+.ecocode-minify	#source-code{
+	width: 100%;
+	heigth: 100%;
+	resize: none;
+	padding: 0;
+	border: none;
+	outline: 1px solid #D6D6D6;
+}
+.ecocode-minify	#col-input{
+}
+.ecocode-minify	.content-holder{
+	position: relative;
+}
+
+.ecocode-minify .col-resize-handle{
+	position: absolute;
+	height: 100%;
+	background-color: #EEEEEE;
+	cursor: col-resize;
+	min-height: 400px;
+   }
+   
+.ecocode-minify	#col-output .output-container{
+	position: absolute;
+   	width: 100%;
+   	overflow-y: scroll;
+  	}
+.ecocode-minify	#col-output .js-file{
+   	border: 1px solid #D6D6D6;
+   	margin-bottom: 10px;
+}
+.ecocode-minify	#col-output .js-file .file-header,
+.ecocode-minify	#col-output .js-file .file-info{
+	padding: 5px;
+}
+.ecocode-minify	#col-output .js-file table.data-table{
+	width: 550px;
+}
+.ecocode-minify	#col-output .js-file table td{
+	margin-right: 10px;
+}
+.ecocode-minify	#col-output .js-file .file-path{
+	font-weight: bold;
+}
+.ecocode-minify	#col-output .has-warnings{
+	background-color: #F29000;
+	color: FFF;
+}
+.ecocode-minify	#col-output .has-errors{
+	background-color: #AA0000;
+	color: FFF;
+}
+.ecocode-minify	#col-output .output-container,
+.ecocode-minify	#col-output .output-header{
+	visibility: hidden;
+}
+.ecocode-minify	#col-output .process-info .data{
+	padding: 5px;
+}
+.ecocode-minify	#col-output .process-info .tabs-horiz{
+	margin-bottom: 0px;
+}
+.ecocode-minify	#col-output .file-info .tabs-horiz{
+	margin: 0 -5px 18px;
+}
+.ecocode-minify	#col-output[data-type="file"] .output-container,
+.ecocode-minify	#col-output[data-type="file"] .output-header{
+	visibility: visible;
+}
+
+.ecocode-minify	#col-output.compiling .file-status-holder{
+	display: inline;
+}
+.ecocode-minify	.file-status-holder .loading{
+	display: none;
+}
+.ecocode-minify	.file-status-holder .loading img{
+    vertical-align: middle;
+    width: 13px;
+}
+.file-status-holder{
+	display: none;
+}
+.file-status{
+	font-weight: bold;
+}
+.js-file.js-tab-content{
+	background-color: none;
+}
+.js-file .file-header{
+	padding: 5px;
+}
+.js-file[data-status="success"] .file-header{
+	background-color: #00C403;
+}
+.js-file[data-status="success"] .file-status{
+	color: #468847;
+}
+.js-file[data-status="warning"] .file-header{
+	background-color: #FDF395;
+}
+.js-file[data-status="warning"] .file-status{
+	color: #C09853;
+}
+.js-file[data-status="error"] .file-header{
+	background-color: #FD8484;
+}
+.js-file[data-status="error"] .file-status{
+	color: #B94A48;
+}
+.js-file[data-status="processing"] .file-header{
+	
+}
+.js-file[data-status="processing"] .file-status-holder .loading{
+	display: inline;
+}
+.js-file .js-tab-content{
+	display: block;
+}
+.js-file[data-status=waiting] .js-tab-content,
+.js-file[data-status="processing"] .js-tab-content{
+	display: none;
+}
+
+
+#js-files[data-key="success"] .js-file{
+	display: none;
+}
+#js-files[data-key="success"] .js-file[data-status="success"]{
+	display: block;
+}
+#js-files[data-key="warning"] .js-file{
+	display: none;
+}
+#js-files[data-key="warning"] .js-file[data-status="warning"]{
+	display: block;
+}
+#js-files[data-key="error"] .js-file{
+	display: none;
+}
+
+#js-files[data-key="error"] .js-file[data-status="error"]{
+	display: block;
+}
+#js-files[data-key="processing"] .js-file{
+	display: none;
+}
+#js-files[data-key="processing"] .js-file[data-status="processing"]{
+	display: block;
+}
+#js-files .js-file .file-info .tabs-horiz{
+	display: none;
+}
+#js-files .js-file[data-status="success"] .file-info .tabs-horiz,
+#js-files .js-file[data-status="error"] .file-info .tabs-horiz,
+#js-files .js-file[data-status="warning"] .file-info .tabs-horiz{
+	display: block;
+}
+#js-files .js-file .file-actions{
+	float: right;
+	
+}
+#js-files .js-file .file-actions .action{
+	cursor: pointer;
+	vertical-align: middle;
+}
+#js-files .js-file .file-actions .file-reload{
+	display: none;
+}
+#js-files .js-file[data-status="success"] .file-reload,
+#js-files .js-file[data-status="error"] .file-reload,
+#js-files .js-file[data-status="warning"] .file-reload{
+	display: inline;
+}
+
+
+.ecocode-minify input, .ecocode-minify textarea, .ecocode-minify code {
+    font-family: 'Lucida Sans Typewriter','Courier New',Courier,Fixed,monospace;
+	word-wrap: break-word;
+}

@@ -1,0 +1,50 @@
+<div id="js-file-#{id}" class="js-file" data-status="#{status}">
+	<div class="file-header">
+		<span class="file-path">#{path}</span>
+		<span class="file-status-holder"><?php echo $this->__('Status')?>: <span class="file-status">#{status}</span>
+			<span class="loading"><img src="<?php echo $this->getSkinUrl('images/process_spinner.gif')?>" /></span>
+		</span>
+		<span class="file-actions">
+			<img class="action file-reload" height="16px" width="16px" src="<?php echo $this->getSkinUrl('images/reload.png')?>" />
+			<img class="action file-remove" height="16px" width="16px" src="<?php echo $this->getSkinUrl('images/cancel_icon.gif')?>" />
+		</span>
+	</div>
+	<div class="file-info">
+		<div>
+			<table class="data-table">
+				<tr>
+					<td><?php echo $this->__('Original Size')?>:</td>
+					<td>#{size}KB</td>
+					<td><?php echo $this->__('Compiling Time')?>:</td>
+					<td class=compiling-time>?</td>
+					<td><?php echo $this->__('Compiled Size')?>:</td>
+					<td class="compiled-size">?</td>
+					<td><?php echo $this->__('Saved')?>:</td>
+					<td class="compression-rate">?</td>
+				</tr>
+			</table>
+		</div>
+		<div>
+			<ul id="js#{id}_tab" class="tabs-horiz">
+				<li>
+					<a id="js#{id}_tab_code" class="tab-item-link" title="<?php echo $this->__('Show All')?>" href="#"><span><?php echo $this->__('Compiled Code')?></span></a>
+				</li>
+				<li>
+					<a id="js#{id}_tab_warnings" class="tab-item-link" title="<?php echo $this->__('Show only success')?>" href="#"><span><?php echo $this->__('Warnings')?> (<span class="warnings-count">0</span>)</span></a>
+				</li>
+				<li>
+					<a id="js#{id}_tab_errors" class="tab-item-link" title="<?php echo $this->__('Show all errors')?>" href="#"><span><?php echo $this->__('Errors')?> (<span class="errors-count">0</span>)</span></a>
+				</li>
+				<li>
+					<a id="js#{id}_tab_additional" class="tab-item-link" title="<?php echo $this->__('Show additional')?>" href="#"><span><?php echo $this->__('Additional')?> (<span class="additional-count">0</span>)</span></a>
+				</li>
+			</ul>
+			<div id="js#{id}_tab_content" class="js-tab-content">
+				<div id="js#{id}_tab_code_content" style="display: none;"><code></code></div>
+				<div id="js#{id}_tab_warnings_content" class="grid" style="display: none;"></div>
+				<div id="js#{id}_tab_errors_content" class="grid" style="display: none;"></div>
+				<div id="js#{id}_tab_additional_content" class="grid" style="display: none;"></div>
+			</div>
+		</div>
+	</div>						
+</div>

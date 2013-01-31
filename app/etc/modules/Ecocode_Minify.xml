@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Ecocode_Minify>
+            <active>true</active>
+            <codePool>community</codePool>
+        </Ecocode_Minify>
+    </modules>
+</config>

@@ -1,0 +1,9 @@
+app/etc/modules/Ecocode_Minify.xml								app/etc/modules/Ecocode_Minify.xml
+app/code/community/Ecocode/Minify/*								app/code/community/Ecocode/Minify/
+app/design/adminhtml/base/default/layout/*						app/design/adminhtml/base/default/layout/
+app/design/adminhtml/base/default/template/ecocode/minify/*		app/design/adminhtml/base/default/template/ecocode/minify/
+js/ecocode/minify/*												js/ecocode/minify/
+skin/adminhtml/base/default/css/ecocode/minify/*				skin/adminhtml/base/default/css/ecocode/minify/
+skin/adminhtml/base/default/images/ecocode/logo.png				skin/adminhtml/base/default/images/ecocode/logo.png
+lib/Closure/*													lib/Closure/
+lib/Yui/*														lib/Yui/

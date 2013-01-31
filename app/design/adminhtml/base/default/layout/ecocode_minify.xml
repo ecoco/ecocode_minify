@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<layout>
+    <ecocode_minify_adminhtml_validate_index>
+    	<reference name="head">
+    		<action method="addJs"><file>ecocode/minify/validate.js</file></action>
+    		<action method="addCss"><file>css/ecocode/minify/validate.css</file></action>
+    	</reference>
+        <reference name="content">
+            <block type="ecocode_minify/adminhtml_validate" name="ecocode.minify.validate" template="ecocode/minify/validate.phtml">
+	            <block type="core/template" name="js_file_template" template="ecocode/minify/validate/js_file.phtml" />
+            </block>
+        </reference>
+	</ecocode_minify_adminhtml_validate_index>
+    <ecocode_minify_adminhtml_log_index>
+    	<reference name="head">
+    		<action method="addJs"><file>ecocode/minify/log.js</file></action>
+    		<action method="addCss"><file>css/ecocode/minify/log.css</file></action>
+    	</reference>
+        <reference name="content">
+            <block type="ecocode_minify/adminhtml_log" name="ecocode.minify.log"/>
+        </reference>
+	</ecocode_minify_adminhtml_log_index>
+</layout>
