@@ -10,6 +10,9 @@ for CSS the [YUI Compressor](http://yui.github.com/yuicompressor/ "YUI Compresso
 In addition this module will give you the opportunity to scan your javascript files for errors and
 possible compiling errors. Its recommend to at least scan all of your js files once with this tool.
 
+## Tested with
+Magento Community Edition 1.7.0.2
+
 ## Requirements
 
 * Java
@@ -58,9 +61,6 @@ Simply clone the repo somewhere and copy the content in your magento root direct
 #### Using [Magento Connect](http://www.magentocommerce.com/magento-connect/ "Magento Connect")
 
 comming soon
-
-You can find this module here: 
-[Ecocode Minify](http://www.magentocommerce.com/magento-connect/xxxxxxxxx.html "Ecocode Minify")
 
 ## Author
 
