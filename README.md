@@ -1,4 +1,4 @@
-Ecocode Minify
+Ecocode Minify(v. 0.0.3 beta)
 =============
 
 Overview
@@ -10,8 +10,8 @@ for CSS the [YUI Compressor](http://yui.github.com/yuicompressor/ "YUI Compresso
 In addition this module will give you the opportunity to scan your javascript files for errors and
 possible compiling errors. Its recommend to at least scan all of your js files once with this tool.
 
-## Tested with
-Magento Community Edition 1.7.0.2
+## Tested with:
+* Magento Community Edition 1.7.0.2
 
 ## Requirements
 
@@ -30,6 +30,8 @@ Magento Community Edition 1.7.0.2
 
 ## Notes
 
+* Minifing is disabled by default. Tomake it active go to System->Configuration->Developer->JavaScript/CSS Settings and
+	set "Merge * Files" to "Yes" and then "Minify * Files" to "Yes"
 * The log functionality is using mysql table due to prevent logsplitting on multiserver environments
 * The warmup functionality will be less effectiv multiserver environments unless you store your merged files in a central place
 * A new suffix well be generated when you click the "Flush JavaScript/CSS Cache" button in you magento backend cache control section
@@ -45,7 +47,7 @@ navigate to your magento root folder:
 	modman init
 	modman clone https://github.com/Fantus/ecocode_minify.git
 
-please note, if you using modman without the "--copy" flag you have to set 
+please note, if you are using modman without the "--copy" flag you have to set 
 
 	dev/template/allow_symlink
 

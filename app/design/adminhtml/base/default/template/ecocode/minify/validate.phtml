@@ -6,7 +6,7 @@
 	    <table cellspacing="0">
 	        <tr>
 	            <td>
-	            	<h3 class="icon-head head-report-sales-sales"><?php echo $this->__('Validate Javascript')?> (<a href="http://closure-compiler.appspot.com">Closure Compiler</a>)</h3>
+	            	<h3 class="icon-head head-report-sales-sales"><?php echo $this->__('Validate Javascript')?> (<a href="http://closure-compiler.appspot.com" target="_blank">Closure Compiler</a>)</h3>
 				</td>
 	            <td class="form-buttons"><?php echo $this->getButtonsHtml() ?></td>
 	        </tr>
@@ -95,13 +95,13 @@
 								<a data-key="processing" class="tab-item-link" title="Show All" href="#"><span><?php echo $this->__('Processing')?> (<span id="total-process" class="total-process">0</span>)</span></a>
 							</li>
 							<li>
-								<a data-key="success" class="tab-item-link" title="Show only success" href="#"><span><?php echo $this->__('Success')?> (<span id="total-successes" class="total-successes">0</span>)</span></a>
+								<a data-key="success" class="tab-item-link" title="Show only success" href="#"><span><?php echo $this->__('Success')?> (<span id="total-success" class="total-success">0</span>)</span></a>
 							</li>
 							<li>
-								<a data-key="warning" class="tab-item-link" title="Show all warnings" href="#"><span><?php echo $this->__('Warnings')?> (<span id="total-warnings" class="total-warnings">0</span>)</span></a>
+								<a data-key="warning" class="tab-item-link" title="Show all warnings" href="#"><span><?php echo $this->__('Warnings')?> (<span id="total-warning" class="total-warning">0</span>)</span></a>
 							</li>
 							<li>
-								<a data-key="error" class="tab-item-link" title="Show all errors" href="#"><span><?php echo $this->__('Errors')?> (<span id="total-errors" class="total-errors">0</span>)</span></a>
+								<a data-key="error" class="tab-item-link" title="Show all errors" href="#"><span><?php echo $this->__('Errors')?> (<span id="total-error" class="total-error">0</span>)</span></a>
 							</li>
 						</ul>
 					</div>
@@ -126,7 +126,7 @@
 <script>
 	
 	$(document).observe('dom:loaded', function(){
-		new _ecocodeMinify.varlidator();
+		new _ecocodeMinify.validator();
 	});
 
 </script>

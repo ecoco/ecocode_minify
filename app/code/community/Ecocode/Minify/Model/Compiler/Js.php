@@ -95,7 +95,7 @@ class Ecocode_Minify_Model_Compiler_Js extends Ecocode_Minify_Model_Compiler_Abs
 		$optionsString = $this->createOptionsString($options);
 		$output = array();
 		$status = 0;
-		exec(escapeshellcmd('java -jar ' . $compilerJAR . ' ' . $optionsString . ' --js ' . $inputFile . ' --js_output_file ' . $outputFile)  . ' 2>&1', $output, $status);		
+		exec(escapeshellcmd('java -jar ' . $compilerJAR . ' ' . $optionsString . ' --js ' . $inputFile . ' --js_output_file ' . $outputFile)  . ' 2>&1', $output, $status);
 		return array($status, $output);
 	}
 	
@@ -172,11 +172,22 @@ class Ecocode_Minify_Model_Compiler_Js extends Ecocode_Minify_Model_Compiler_Abs
 	 */
 	
 	public function parseOutput(array $outputArray = array()){
+		$entries = array();
 		$messages = array();
-		
 		//"^" is the delimeter for google
-		$entries = explode('^', implode($outputArray, "\r\n"));
-		
+		$current = array();
+		foreach($outputArray AS $line){
+			if(!$line) continue;
+			if(trim($line) == '^'){
+				$entries[] = implode("<br />", $current);
+				$current = array();
+			} else {
+				//we need to limit output in case we recompile a already compiled 1 line file
+				if (strlen($line) > 2500) $line = substr($line, 0, 2500);
+				$current[] = $line;
+			}
+		}
+		if(count($current)) $entries[] = implode("<br />", $current);
 		if(!count($entries)) $messages;
 		
 		//last line contains stats like "18 error(s), 5 warning(s)"

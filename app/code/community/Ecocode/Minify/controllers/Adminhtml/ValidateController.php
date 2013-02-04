@@ -72,7 +72,7 @@ class Ecocode_Minify_Adminhtml_ValidateController extends Mage_Adminhtml_Control
    		$baseDir = Mage::getBaseDir() . '/';
    		
    		
-   		$path = $this->getRequest()->getParam('path');
+   		$path = trim($this->getRequest()->getParam('path'));
    		if(!$path || !file_exists($baseDir . $path)){
    			throw new Exception('File not found ' . $baseDir . $path);
    		}

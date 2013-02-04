@@ -252,7 +252,7 @@ var _ecocodeMinify = {
 		}
 	}),
 	
-	varlidator: Class.create({
+	validator: Class.create({
 		initialize: function(options){
 			options = options || {};
 			var defaultOptions = {
@@ -272,7 +272,6 @@ var _ecocodeMinify = {
 				onSuccess: function(){ this.updateProcessCount(); this.incStatusCount('processed');}.bind(this),
 				onError: function(){ this.updateProcessCount();	this.incStatusCount('processed');}.bind(this),
 				onProcessStart: function(){
-					this.resetTotals();
 					$('compiling-start').hide();
 					$('compiling-stop').show();					
 				}.bind(this),
@@ -419,7 +418,7 @@ var _ecocodeMinify = {
 		},
 		
 		startCompiling: function(){
-
+			this.resetTotals();	
 			$('col-output').removeClassName('compiling');
 			$('loading-mask').addClassName('eco-hidden');
 			if(!this.files.size()) return;
@@ -472,14 +471,12 @@ var _ecocodeMinify = {
 
 			if(data.errors.size() > 0){
 				file.status = 'error';
-				this.incStatusCount('errors');
 			} else if(data.warnings.size() > 0){
 				file.status = 'warning';
-				this.incStatusCount('warnings');
 			} else {
 				file.status = 'success';
-				this.incStatusCount('successes');
 			}
+			this.incStatusCount(file.status);
 			this.setFileStatus(file.id, file.status);
 			holder.down('td.compiled-size').innerHTML = data.size + 'KB';				
 			holder.down('td.compiling-time').innerHTML = data.compiling_time + ' Sec';
@@ -502,6 +499,7 @@ var _ecocodeMinify = {
 		renderFiles: function(files){
 			if(files){
 				this.files = files || [];
+				this.resetTotals();
 			}
 			var jsFileList = $('js-files');
 
@@ -511,7 +509,6 @@ var _ecocodeMinify = {
 				$('compiling-start').show();
 			}
 			
-			this.resetTotals();
 			$('total-fileCount').innerHTML = this.files.size();
 			jsFileList.innerHTML = '';
 			var jsFilefTemplate = new Template($('validate-js-file-template').innerHTML);
@@ -529,7 +526,7 @@ var _ecocodeMinify = {
 				li.down('.action.file-reload').observe('click', function(){
 					this.setFileStatus(file.id, 'waiting');
 					this.decStatusCount('processed');
-					this.decStatusCount(file.status + 's');
+					this.decStatusCount(file.status);
 					this.process.addToQueue(file, true);
 				}.bind(this));
 				li.down('.action.file-remove').observe('click', function(){
