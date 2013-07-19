@@ -71,7 +71,7 @@ comming soon
 
 ## License
 
-Copyright(C) 2013 Ecocode Gbr (http://ecocode.de)
+Copyright(C) 2013 Ecocode GbR (http://ecocode.de)
 
 Licensed under the under the MIT License.
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), 
