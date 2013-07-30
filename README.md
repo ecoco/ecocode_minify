@@ -28,6 +28,9 @@ possible compiling errors. Its recommend to at least scan all of your js files o
 * Admin module to validate js files
 * Warmup functionality for JS/CSS cache clear
 
+![Validator](http://ecocode.de/magento_modules/ecocode_minify/validator.jpg)
+![Compiler Success](http://ecocode.de/magento_modules/ecocode_minify/compiler_success.jpg)
+![Compiler Warnings](http://ecocode.de/magento_modules/ecocode_minify/compiler_warnings.jpg)
 ## Notes
 
 * Minifing is disabled by default. Tomake it active go to System->Configuration->Developer->JavaScript/CSS Settings and
