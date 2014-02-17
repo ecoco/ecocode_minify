@@ -49,7 +49,7 @@ class Ecocode_Minify_Model_Compiler_Css extends Ecocode_Minify_Model_Compiler_Ab
 	 */
 	
 	public function compile($inputFile, $outputFile, $options = array()){
-		$compilerJAR = Mage::getBaseDir() . DS . 'lib' . DS . 'Yui' . DS . 'yuicompressor-2.4.7.jar';
+		$compilerJAR = Mage::getBaseDir() . DS . 'lib' . DS . 'Yui' . DS . 'yuicompressor-2.4.8.jar';
 		if(!file_exists($compilerJAR)) throw new Exception('Cant minify css Compiler not found! ' . $compilerJAR);
 		
 		$output = array();
