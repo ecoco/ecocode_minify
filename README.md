@@ -48,7 +48,7 @@ possible compiling errors. Its recommend to at least scan all of your js files o
 navigate to your magento root folder:
 
 	modman init
-	modman clone https://github.com/Fantus/ecocode_minify.git
+	modman clone https://github.com/ecoco/ecocode_minify
 
 please note, if you are using modman without the "--copy" flag you have to set 
 

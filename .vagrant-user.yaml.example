@@ -1,0 +1,6 @@
+:aws:
+    :access_key: "<ACCESS_KEY_HERE>"
+    :secret_key: "<SECRET_KEY_HERE>"
+:chef:
+    #optional if you want to use local chef repository use fill and uncomment
+    #:local_repository_path: "/projects/ecocode/recipes"
