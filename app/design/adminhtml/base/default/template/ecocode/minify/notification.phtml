@@ -1,0 +1,17 @@
+<?php if(!$this->isExecUseable()): ?>
+    <div class="notification-global">
+        <span>
+            <b>Ecocode Minify Fatal Configuration Error:</b> your server configuration doesn't allow for running <b>exec()</b> function. 
+            This function is required for running the css/ js compilers and without it the module will not work. Please fix this.
+        </span>
+    </div>
+<?php endif; ?>
+
+<?php if(!$this->isJavaUseable()): ?>
+    <div class="notification-global">
+        <span>
+            <b>Ecocode Minify Fatal Configuration Error:</b> Java JRE wasn't found on your system, or your installed version is lower than 
+            <b>1.<?php echo $this->getMinJavaVersion() ?></b>. Please update your server configuration, as JRE is required for the js/ css compilers to work.
+        </span>
+    </div>
+<?php endif; ?>

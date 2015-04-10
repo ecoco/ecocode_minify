@@ -8,6 +8,12 @@
  */
 class Ecocode_Minify_Helper_Data extends Mage_Core_Helper_Abstract{
 
+    /**
+     * 
+     * @param string $pattern
+     * @param string $path
+     * @return array
+     */
 	public function rglob($pattern='*',  $path=''){
 		$paths=glob($path.'*', GLOB_MARK|GLOB_ONLYDIR|GLOB_NOSORT);
 		$files=glob($path.$pattern);
@@ -17,6 +23,12 @@ class Ecocode_Minify_Helper_Data extends Mage_Core_Helper_Abstract{
 		return $files;
 	}
 	
+    /**
+     * 
+     * @param array $arrayData
+     * @param array $head
+     * @return string
+     */
 	public function arrayToTable($arrayData, $head = array()){
 		$html = '<table cellspacing="0">';
 		if($head){
@@ -40,4 +52,76 @@ class Ecocode_Minify_Helper_Data extends Mage_Core_Helper_Abstract{
 		$html .= '</tbody></table>';
 		return $html;
 	}
+    
+    /**
+     * Can find a java bin and run a command?
+     * 
+     * @param $minJavaVersion what minimal java version is required
+     * @return boolean
+     */
+    public function canRunJava($minJavaVersion = null)
+    {
+        //is exec available?
+        if(!$this->isExecAvailable()) {
+            return false;
+        }
+        
+        //can find and run java?
+        $output = array();
+        $result = null;
+        exec("java -version 2>&1", $output, $result);
+        
+        if(empty($output) || !isset($output[0]) || (isset($output[0]) && preg_match("/java(.)+not found/", $output[0]) === 1)) {
+            return false;
+        }
+        
+        $versionString = $output[0];
+        
+        //the command should return a version number. did we get it?
+        if(preg_match("/java version/i", $versionString) !== 1) {
+            return false;
+        }
+        
+        if($minJavaVersion) {
+            $parsedVersion = substr($versionString, strpos($versionString, "\"") + 1);
+            if(strpos($parsedVersion, ".") === false) {
+                return false;
+            }
+            
+            $versionArray = (explode(".", $parsedVersion));
+            $majorVersion = $versionArray[0];
+            $minorVersion = $versionArray[1];
+            
+            if($majorVersion < 2 && $minorVersion < $minJavaVersion) {
+                return false; //the current java version is too old
+            }
+        }
+        
+        return true;
+    }
+    
+    /**
+     * Can the exec command be run in this environment?
+     * 
+     * @return boolean
+     */
+    public function isExecAvailable()
+    {
+        $available = true;
+        
+        if (ini_get('safe_mode')) {
+            $available = false;
+        } else {
+            $disabledFunction = ini_get('disable_functions');
+            $suhosinBlacklist = ini_get('suhosin.executor.func.blacklist');
+            if ("$disabledFunction$suhosinBlacklist") {
+                $array = preg_split('/,\s*/', "$disabledFunction,$suhosinBlacklist");
+                if (in_array('exec', $array)) {
+                    $available = false;
+                }
+            }
+        }
+
+        return $available;
+    }
 }

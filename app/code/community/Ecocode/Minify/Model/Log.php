@@ -12,7 +12,8 @@
 class Ecocode_Minify_Model_Log extends Mage_Core_Model_Abstract
 {
 	private $_logger = null;
-    protected function _construct(){
+    protected function _construct()
+    {
         $this->_init('ecocode_minify/log');
     }
     
@@ -27,7 +28,8 @@ class Ecocode_Minify_Model_Log extends Mage_Core_Model_Abstract
      * @author "Justus Krapp <jk@ecocode.de>"
      */    
     
-	public function log($message, $details = null, $type = 'debug'){
+	public function log($message, $details = null, $type = 'debug')
+    {
 		if(!Mage::getStoreConfigFlag('ecocode_minify/settings/debug_log') && $type != 'error') return;
 		if(!is_string($message)) $message = print_r($message, TRUE);
 		if(!is_string($details)) $details = print_r($details, TRUE);
@@ -46,11 +48,13 @@ class Ecocode_Minify_Model_Log extends Mage_Core_Model_Abstract
 	 * @author "Justus Krapp <jk@ecocode.de>"
 	 */
 	
-	public function logError($message, $details = null){
+	public function logError($message, $details = null)
+    {
 		$this->log($message, $details, 'error');
 	}
 
-	public function getTypes(){
+	public function getTypes()
+    {
 		$helper = Mage::helper('ecocode_minify');
 		$options = array();
 		
@@ -60,12 +64,14 @@ class Ecocode_Minify_Model_Log extends Mage_Core_Model_Abstract
 		return $options;
 	}
 	
-	private function getLogger(){
+	private function getLogger()
+    {
 		if(is_null($this->_logger)) $this->_logger = $this->getResource();
 		return $this->_logger;
 	}
 	
-	public function isWarmUp(){
+	public function isWarmUp()
+    {
 		return Mage::app()->getRequest()->getParam('warmup') ? TRUE : FALSE;
 	}
 }

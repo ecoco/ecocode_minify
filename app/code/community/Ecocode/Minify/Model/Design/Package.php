@@ -204,7 +204,7 @@ class Ecocode_Minify_Model_Design_Package extends Mage_Core_Model_Design_Package
 		
 		if(Mage::getModel('ecocode_minify/compiler_js')->minify($targetFilename, $tmpFile)){
 			if(!rename($tmpFile, $targetFilename)){
-				Mage::getSingleton('ecocode_minify/log')->log('Minify js file could not me renamed');
+				Mage::getSingleton('ecocode_minify/log')->log('Minify js file could not be renamed');
 			}			
 		}
 		return $this;
@@ -226,7 +226,7 @@ class Ecocode_Minify_Model_Design_Package extends Mage_Core_Model_Design_Package
 		
 		if(Mage::getModel('ecocode_minify/compiler_css')->minify($targetFilename, $tmpFile)){
 			if(!rename($tmpFile, $targetFilename)){
-				Mage::getSingleton('ecocode_minify/log')->log('Minify css file could not me renamed');
+				Mage::getSingleton('ecocode_minify/log')->log('Minify css file could not be renamed');
 			}
 		}
 		return $this;

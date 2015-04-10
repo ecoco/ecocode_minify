@@ -5,7 +5,10 @@
  * @author "Justus Krapp <jk@ecocode.de>"
  * @author http://ecocode.de/
  */
-class Ecocode_Minify_Model_Compiler_Js extends Ecocode_Minify_Model_Compiler_Abstract{
+class Ecocode_Minify_Model_Compiler_Js extends Ecocode_Minify_Model_Compiler_Abstract
+{
+    const COMPILER_FILENAME = 'compiler.jar';
+    const MIN__REQUIRED_JAVA_VERSION = 7;
 	
 	protected $_defaultCompileOptions = array(
 		'compilation_level' => 'SIMPLE_OPTIMIZATIONS'
@@ -43,7 +46,8 @@ class Ecocode_Minify_Model_Compiler_Js extends Ecocode_Minify_Model_Compiler_Abs
 	 * @author "Justus Krapp <jk@ecocode.de>"
 	 */
 	
-	public function minify($inputFile, $outputFile, $options = array()){
+	public function minify($inputFile, $outputFile, $options = array())
+    {
 		$url =  Mage::app()->getHelper('core/url')->getCurrentUrl();
 		try {
 			$sizeBefore = filesize($inputFile);
@@ -52,6 +56,7 @@ class Ecocode_Minify_Model_Compiler_Js extends Ecocode_Minify_Model_Compiler_Abs
 				array('line' => '', 'type' => 'File', 'message' => $inputFile),	
 				array('line' => '', 'type' => 'Url', 'message' => $url)		
 			);
+            
 			if(Mage::getStoreConfigFlag('ecocode_minify/settings/debug_log') && count($output)){
 				$helper = Mage::app()->getHelper('ecocode_minify');
 				$output = array_merge($details, $this->parseOutput($output));
@@ -65,10 +70,12 @@ class Ecocode_Minify_Model_Compiler_Js extends Ecocode_Minify_Model_Compiler_Abs
 				$this->logError(' Minifing JS for ' . $url . 'failed, maybe java is not installed!', $details);
 				return FALSE;
 			}
+            
 			if($sizeBefore == filesize($outputFile) || filesize($outputFile) == 0){
 				$this->logError('Minifing JS failed! Serving uncompiled file', $details);
 				return FALSE;
 			}
+            
 			return TRUE;			
 			
 		} catch(Exception $e){
@@ -76,6 +83,17 @@ class Ecocode_Minify_Model_Compiler_Js extends Ecocode_Minify_Model_Compiler_Abs
 			return FALSE;
 		}
 	}
+    
+    /**
+     * Get Closure compiler file path
+     * 
+     * @return string
+     */
+    public function getCompilerPath()
+    {
+        $path = Mage::getBaseDir() . DS . 'lib' . DS . 'Closure' . DS . self::COMPILER_FILENAME;
+        return $path;
+    }
 	
 	/**
 	 * compile
@@ -88,15 +106,25 @@ class Ecocode_Minify_Model_Compiler_Js extends Ecocode_Minify_Model_Compiler_Abs
 	 * @author "Justus Krapp <jk@ecocode.de>"
 	 */
 	
-	public function compile($inputFile, $outputFile, array $options = array()){
-		$compilerJAR = Mage::getBaseDir() . DS . 'lib' . DS . 'Closure' . DS . 'compiler.jar';
-		if(!file_exists($compilerJAR)) throw new Exception('Cant Minify Javascript Compiler not found! ' . $compilerJAR);
+	public function compile($inputFile, $outputFile, array $options = array())
+    {
+		$compilerJAR = $this->getCompilerPath();
+		if(!file_exists($compilerJAR)) {
+            throw new Exception("Can't Minify: Javascript Compiler not found! Was expecting: " . $compilerJAR);
+        }
+        
+        if(!$this->_isJavaUseable(self::MIN__REQUIRED_JAVA_VERSION)) {
+            throw new Exception(
+                    sprintf('Java is not available, or is wrong version. Minimal Java version required is %s. Please review your server configuration.', self::MIN__REQUIRED_JAVA_VERSION)
+                );
+        }
 		
 		$optionsString = $this->createOptionsString($options);
 		$output = array();
 		$status = 0;
 		exec(escapeshellcmd('java -jar ' . $compilerJAR . ' ' . $optionsString . ' --js ' . $inputFile . ' --js_output_file ' . $outputFile)  . ' 2>&1', $output, $status);
-		return array($status, $output);
+		
+        return array($status, $output);
 	}
 	
 	/**
@@ -109,11 +137,14 @@ class Ecocode_Minify_Model_Compiler_Js extends Ecocode_Minify_Model_Compiler_Abs
 	 * @author "Justus Krapp <jk@ecocode.de>"
 	 */
 	
-	private function createOptionsString(array $options = array()){
+	private function createOptionsString(array $options = array())
+    {
 		$options = array_merge($this->_defaultCompileOptions, $options);
 		$optionString = array();
 		foreach($options AS $key => $option){
-			if(!isset($this->_compileOptionsWhitelist[$key])) continue;
+			if(!isset($this->_compileOptionsWhitelist[$key])) {
+                continue;
+            }
 			
 			if(!is_array($option)){
 				$option = strtoupper($option);
@@ -123,7 +154,9 @@ class Ecocode_Minify_Model_Compiler_Js extends Ecocode_Minify_Model_Compiler_Abs
 			} else {
 				foreach($option AS $value){
 					$value = strtoupper($value);
-					if(!in_array($value, $this->_compileOptionsWhitelist[$key])) continue;
+					if(!in_array($value, $this->_compileOptionsWhitelist[$key])) {
+                        continue;
+                    }
 					
 					$optionString[] = '--' . $key . ' ' . $value;
 				}

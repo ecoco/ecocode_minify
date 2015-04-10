@@ -1,6 +1,8 @@
 <?php
-class Ecocode_Minify_Model_Compiler_Css extends Ecocode_Minify_Model_Compiler_Abstract{
-	
+class Ecocode_Minify_Model_Compiler_Css extends Ecocode_Minify_Model_Compiler_Abstract
+{
+    const COMPILER_FILENAME = 'yuicompressor-2.4.8.jar';
+    
 	/**
 	 * minify
 	 * 
@@ -18,12 +20,12 @@ class Ecocode_Minify_Model_Compiler_Css extends Ecocode_Minify_Model_Compiler_Ab
 			list($status, $output) = $this->compile($inputFile, $outputFile, $options);
 
 			if(!file_exists($outputFile)){
-				$this->logError('Minifing CSS for ' . $url . 'failed, maybe java is not installed!', $details);
+				$this->logError('Minifing CSS for ' . $url . ' failed, maybe java is not installed!');
 				return FALSE;
 			}
 			
 			if($sizeBefore == filesize($outputFile) || filesize($outputFile) == 0){
-				$this->logError('Minifing CSS failed! Serving compiled file', $details);
+				$this->logError('Minifing CSS failed! Serving compiled file');
 				//deleted to empty or corrupt tmp file
 				unlink($outputFile);
 				return FALSE;
@@ -34,6 +36,17 @@ class Ecocode_Minify_Model_Compiler_Css extends Ecocode_Minify_Model_Compiler_Ab
 			return FALSE;
 		}
 	}
+    
+    /**
+     * Get path for the YUI compressor jar
+     * 
+     * @return string
+     */
+    public function getCompilerPath()
+    {
+        $path = Mage::getBaseDir() . DS . 'lib' . DS . 'Yui' . DS . self::COMPILER_FILENAME;
+        return $path;
+    }
 	
 	/**
 	 * compile
@@ -49,8 +62,15 @@ class Ecocode_Minify_Model_Compiler_Css extends Ecocode_Minify_Model_Compiler_Ab
 	 */
 	
 	public function compile($inputFile, $outputFile, $options = array()){
-		$compilerJAR = Mage::getBaseDir() . DS . 'lib' . DS . 'Yui' . DS . 'yuicompressor-2.4.8.jar';
-		if(!file_exists($compilerJAR)) throw new Exception('Cant minify css Compiler not found! ' . $compilerJAR);
+		$compilerJAR = $this->getCompilerPath();
+        
+		if(!file_exists($compilerJAR)) {
+            throw new Exception('Cant minify css. Compiler not found! Tried running: ' . $compilerJAR);
+        }
+        
+        if(!$this->_isJavaUseable()) {
+            throw new Exception('Java is not available. Please review your server configuration.');
+        }
 		
 		$output = array();
 		$status = 0;

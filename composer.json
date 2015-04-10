@@ -1,0 +1,12 @@
+{
+    "name": "ecocode/minify",
+    "type": "magento-module",
+    "license": "OSL-3.0",
+    "description": "Minify and merge CSS and JS files in Magento. Scan and check JS errors.",
+    "authors":[
+        {
+            "name": "Justus Krapp",
+            "email": "justus@ecocode.de"
+        }
+    ]
+}

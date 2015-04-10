@@ -1,21 +1,21 @@
 <?php
 class Ecocode_Minify_Adminhtml_ValidateController extends Mage_Adminhtml_Controller_Action
 {
-	
-    public function indexAction() {
-        $this->loadLayout();
-        $this->_setActiveMenu('system/ecocode_minify/validate');
-        $this->renderLayout();
-    }
-
-    private $_functionWhiteList = array(
+	private $_functionWhiteList = array(
     	'getJsDir' => 'getJsDir',
     	'compile' => 'compile',
     	'checkFilePath' => 'checkFilePath',
     	'compileCustom' => 'compileCustom'
     );
     
-    public function runfuncAction(){
+    public function indexAction() {
+        $this->loadLayout();
+        $this->_setActiveMenu('system/ecocode_minify/validate');
+        $this->renderLayout();
+    }
+    
+    public function runfuncAction()
+    {
     	$returnData = array('status' => true);
     	try{
     		$callName = $this->getRequest()->getParam('callname');
@@ -38,7 +38,8 @@ class Ecocode_Minify_Adminhtml_ValidateController extends Mage_Adminhtml_Control
     	$this->getResponse()->setBody(json_encode($returnData));    	
     }
     
-    private function getFunctionName($callName){
+    private function getFunctionName($callName)
+    {
     	if(!isset($this->_functionWhiteList[$callName])) throw new Exception('invalid callname');
     	return $this->_functionWhiteList[$callName];
     }   
@@ -51,7 +52,8 @@ class Ecocode_Minify_Adminhtml_ValidateController extends Mage_Adminhtml_Control
      * @author "Justus Krapp <jk@ecocode.de>"
      */
     
-    private function getJsDir(){
+    private function getJsDir()
+    {
    		$baseDir = Mage::getBaseDir() . '/';
    		$option = $this->getRequest()->getParam('option');
    		$dirs = array(
@@ -97,35 +99,35 @@ class Ecocode_Minify_Adminhtml_ValidateController extends Mage_Adminhtml_Control
     private function compile($file = null){
     	//we dont need sessions here, so to prevent session blocking and session race conditions
     	session_write_close();
-    		$start = microtime(TRUE);
-			$result = array(
-				'status' => TRUE,
-				'size' => '?',
-				'compiling_time' => '?',
-			);
-			if(!$file) $file = Mage::getBaseDir() . '/' . $this->getRequest()->getParam('file');
-    		if(!file_exists($file)) throw new Exception('File not found!');
-    		$sizeBefore = filesize($file);
-    		if(strpos($file, '.js') === FALSE){ throw new Exception('Only JS files are allowed');}
-    		$filename = basename($file);
-    		$tmpFile = Mage::getBaseDir('tmp') . '/' . str_replace('.js', '.tmp.js', $filename);
-    		
-    		$jsCompiler = Mage::getModel('ecocode_minify/compiler_js');
-    		list($status, $output) = $jsCompiler->compile($file, $tmpFile, $this->getRequest()->getParam('options', array()));
-    		if(!file_exists($tmpFile)){
-    			$result['errors'][] = ' Minifing JS ' . $filename . 'failed, maybe java is not installed!';
-    		} else {
-    			$result = array_merge($result, $jsCompiler->getGroupedOutput($output));
-				$result['size'] = number_format((filesize($tmpFile) / 1024), 2);
-				$result['compiling_time'] = number_format((microtime(TRUE) - $start), 2);
-				$result['compressed_code'] = nl2br(htmlentities(file_get_contents($tmpFile)));
-				$result['tab_content'] = array(
-					array('tab' => 'errors', 'key' => 'errors', 'html' => 	Mage::helper('ecocode_minify')->arrayToTable($result['errors'], array('line' => 'Line', 'message' => 'Error'))),
-					array('tab' => 'warnings', 'key' => 'warnings', 'html' => 	Mage::helper('ecocode_minify')->arrayToTable($result['warnings'], array('line' => 'Line', 'message' => 'Warning'))),
-					array('tab' => 'additional', 'key' => 'additional', 'html' => 	Mage::helper('ecocode_minify')->arrayToTable($result['additional'], array('message' => 'Message')))
-				);
-				//remove tmp file when we are done
-    		}
+        $start = microtime(TRUE);
+        $result = array(
+            'status' => TRUE,
+            'size' => '?',
+            'compiling_time' => '?',
+        );
+        if(!$file) $file = Mage::getBaseDir() . '/' . $this->getRequest()->getParam('file');
+        if(!file_exists($file)) throw new Exception('File not found!');
+        $sizeBefore = filesize($file);
+        if(strpos($file, '.js') === FALSE){ throw new Exception('Only JS files are allowed');}
+        $filename = basename($file);
+        $tmpFile = Mage::getBaseDir('tmp') . '/' . str_replace('.js', '.tmp.js', $filename);
+
+        $jsCompiler = Mage::getModel('ecocode_minify/compiler_js');
+        list($status, $output) = $jsCompiler->compile($file, $tmpFile, $this->getRequest()->getParam('options', array()));
+        if(!file_exists($tmpFile)){
+            $result['errors'][] = ' Minifing JS ' . $filename . ' failed, maybe java is not installed!';
+        } else {
+            $result = array_merge($result, $jsCompiler->getGroupedOutput($output));
+            $result['size'] = number_format((filesize($tmpFile) / 1024), 2);
+            $result['compiling_time'] = number_format((microtime(TRUE) - $start), 2);
+            $result['compressed_code'] = nl2br(htmlentities(file_get_contents($tmpFile)));
+            $result['tab_content'] = array(
+                array('tab' => 'errors', 'key' => 'errors', 'html' => 	Mage::helper('ecocode_minify')->arrayToTable($result['errors'], array('line' => 'Line', 'message' => 'Error'))),
+                array('tab' => 'warnings', 'key' => 'warnings', 'html' => 	Mage::helper('ecocode_minify')->arrayToTable($result['warnings'], array('line' => 'Line', 'message' => 'Warning'))),
+                array('tab' => 'additional', 'key' => 'additional', 'html' => 	Mage::helper('ecocode_minify')->arrayToTable($result['additional'], array('message' => 'Message')))
+            );
+            //remove tmp file when we are done
+        }
     	if(file_exists($tmpFile)) unlink($tmpFile);
     	return $result;
     }
