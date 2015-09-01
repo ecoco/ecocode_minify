@@ -2,19 +2,19 @@
 <config>
     <modules>
         <Ecocode_Minify>
-            <version>0.0.3</version>
+            <version>0.0.4</version>
             <summary>Ecocode Minify is a Magento Module, to minify your merged CSS and JS files.</summary>
             <license>OSL 3.0</license>
         </Ecocode_Minify>
     </modules>
-	<default>
+    <default>
         <ecocode_minify>
-        	<settings>
-        		<warmup>1</warmup>
-        		<debug_log>1</debug_log>
-        	</settings>
-      	</ecocode_minify>
-	</default>	     	
+            <settings>
+                <warmup>0</warmup>
+                <debug_log>1</debug_log>
+            </settings>
+        </ecocode_minify>
+    </default>
     <global>
         <models>
             <ecocode_minify>
@@ -24,7 +24,9 @@
             <ecocode_minify_resource>
                 <class>Ecocode_Minify_Model_Resource</class>
                 <entities>
-                    <minify_log><table>ecocode_minify_log</table></minify_log>
+                    <minify_log>
+                        <table>ecocode_minify_log</table>
+                    </minify_log>
                 </entities>
             </ecocode_minify_resource>
             <core>
@@ -50,7 +52,7 @@
                 <class>Ecocode_Minify_Block</class>
             </ecocode_minify>
         </blocks>
-		<events>
+        <events>
             <clean_media_cache_before>
                 <observers>
                     <ecocode_minify>
@@ -59,7 +61,7 @@
                         <method>createNewSuffix</method>
                     </ecocode_minify>
                 </observers>
-            </clean_media_cache_before>     
+            </clean_media_cache_before>
             <clean_media_cache_after>
                 <observers>
                     <ecocode_minify>
@@ -68,7 +70,7 @@
                         <method>copyCache</method>
                     </ecocode_minify>
                 </observers>
-            </clean_media_cache_after>     
+            </clean_media_cache_after>
         </events>
     </global>
     <admin>
@@ -82,7 +84,7 @@
             </ecocode_minify>
         </routers>
     </admin>
-   	<adminhtml>
+    <adminhtml>
         <layout>
             <updates>
                 <ecocode_minify>
@@ -90,5 +92,5 @@
                 </ecocode_minify>
             </updates>
         </layout>
-     </adminhtml>
+    </adminhtml>
 </config>

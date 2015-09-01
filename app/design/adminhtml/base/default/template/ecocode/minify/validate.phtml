@@ -1,132 +1,132 @@
 <script>
-	var ajaxRunfuncUrl = '<?php echo  Mage::helper("adminhtml")->getUrl('*/adminhtml_validate/runfunc/'); ?>';
+    var ajaxRunfuncUrl = '<?php echo  Mage::helper("adminhtml")->getUrl('*/adminhtml_validate/runfunc/'); ?>';
 </script>
 <div class="ecocode-minify">
     <div class="content-header">
-	    <table cellspacing="0">
-	        <tr>
-	            <td>
-	            	<h3 class="icon-head head-report-sales-sales"><?php echo $this->__('Validate Javascript')?> (<a href="http://closure-compiler.appspot.com" target="_blank">Closure Compiler</a>)</h3>
-				</td>
-	            <td class="form-buttons"><?php echo $this->getButtonsHtml() ?></td>
-	        </tr>
-	    </table>
-	</div>
-	<div id="splitspan-holder" class="content-holder">
-		<div id="col-input" class="entry-edit splitspan" style="width: 600px">
-			<div class="fieldset">
-				<div id="compiling-options" class="compiler-options">
-					<div class="input-holder">
-						<label><?php echo $this->__('Select an Option')?>:</label>
-						<select class="data" name="option">
-							<option value="all"><?php echo $this->__('Every Javascript File')?></option>
-							<option value="main_js"><?php echo $this->__('Main JS Files')?> (/js/*)</option>
-							<option value="skin_frontend_js"><?php echo $this->__('Skin Frontend JS Files')?> (/skin/frontend/*)</option>
-							<option value="skin_adminhtml_js"><?php echo $this->__('Skin Frontend JS Files')?> (/skin/adminhtml/*)</option>
-							<option value="custom"><?php echo $this->__('Custom')?></option>
-							<option value="add_file"><?php echo $this->__('Specific File')?></option>
-						</select>
-						<button id="get-js-files" class="scalable " style="" type="button" title="">
-							<span><span><?php echo $this->__('Get JS Files')?></span></span>
-						</button>
-					</div>
-					<div class="input-holder file-path">
-						<label><?php echo $this->__('File path(relative)')?>:</label>
-						<input id="file_path" type="text" name="file_path" />
-						<button id="add-js-file" class="scalable" type="button" title="<?php echo $this->__('Add')?>">
-							<span><span><?php echo $this->__('Add')?></span></span>
-						</button>
-					</div>
-					<div class="input-holder">
-						<label><?php echo $this->__('Optimization')?>:</label>
-						<select class="data" name="options[compilation_level]">
-							<option value="WHITESPACE_ONLY"><?php echo $this->__('Whitespace only')?></option>
-							<option value="SIMPLE_OPTIMIZATIONS" selected="selected"><?php echo $this->__('Simple')?></option>
-						</select>
-					</div>
-					<div class="input-holder">
-						<label><?php echo $this->__('Warning level')?>:</label>
-						<select class="data" name="options[warning_level]">
-							<option value="DEFAULT" selected="selected"><?php echo $this->__('Default')?></option>
-							<option value="VERBOSE"><?php echo $this->__('Verbose')?></option>
-						</select>
-					</div>
-					<div class="input-holder input-formatting">
-						<label><?php echo $this->__('Formatting')?>:</label>
-						<span><input class="checkbox data" type="checkbox" name="options[formatting][pretty_print]" value="pretty_print" />Pretty print</span>
-						<span><input class="checkbox data" type="checkbox" name="options[formatting][print_input_delimiter]" value="print_input_delimiter" />Print input delimiter</span>
-					</div>
-					<div class="input-holder">
-						<button id="compiling-start" class="scalable " style="display: none;" type="button" title="">
-							<span><span><?php echo $this->__('Start')?></span></span>
-						</button>
-						<button id="compiling-stop" class="scalable " style="display: none;" type="button" title="">
-							<span><span><?php echo $this->__('Stop')?></span></span>
-						</button>
-						<button id="compile-custom" class="scalable " style="" type="button" title="">
-							<span><span><?php echo $this->__('Compile')?></span></span>
-						</button>
-					</div>
-				</div>
-				<div class="custom-code">
-					<label><?php echo $this->__('Custom')?>:</label>
-					<textarea class="data" name="source-code" spellcheck="false" rows="15" cols="70" id="source-code"></textarea>
-				</div>
-			</div>
-		</div>
-		<div class="col-resize-handle">&nbsp;</div>
-		<div id="col-output" class="entry-edit splitspan">
-			<div class="output-header">
-				<div style="float: right">
-					<button id="clear-all" class="scalable" type="button" title="<?php echo $this->__('Clear')?>">
-						<span><span><?php echo $this->__('Clear')?></span></span>
-					</button>
-				</div>
-				<div class="process-info">
-					<div class="data">
-						<?php echo $this->__('Progress: Files')?> <span id="total-processed" class="total-processed"></span> <?php echo $this->__('of')?> <span id="total-fileCount" class=""></span>
-					</div>
-					<div>
-						<ul id="result_tab" class="tabs-horiz">
-							<li>
-								<a data-key="all" class="tab-item-link active" title="Show All" href="#"><span><?php echo $this->__('All')?></span></a>
-							</li>
-							<li>
-								<a data-key="processing" class="tab-item-link" title="Show All" href="#"><span><?php echo $this->__('Processing')?> (<span id="total-process" class="total-process">0</span>)</span></a>
-							</li>
-							<li>
-								<a data-key="success" class="tab-item-link" title="Show only success" href="#"><span><?php echo $this->__('Success')?> (<span id="total-success" class="total-success">0</span>)</span></a>
-							</li>
-							<li>
-								<a data-key="warning" class="tab-item-link" title="Show all warnings" href="#"><span><?php echo $this->__('Warnings')?> (<span id="total-warning" class="total-warning">0</span>)</span></a>
-							</li>
-							<li>
-								<a data-key="error" class="tab-item-link" title="Show all errors" href="#"><span><?php echo $this->__('Errors')?> (<span id="total-error" class="total-error">0</span>)</span></a>
-							</li>
-						</ul>
-					</div>
-				</div>
-			</div>
-			<div class="output-container">
-				<div class="fieldset">
-					<div class="output-files">
-						<ul id="js-files" data-key="all">					
-						</ul>
-						<div id="validate-js-file-template" style="display: none;">
-							<?php echo $this->getChildHtml('js_file_template')?>
-						</div>
-					</div>
-					<div id="output-custom" class="output-custom">
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+        <table cellspacing="0">
+            <tr>
+                <td>
+                    <h3 class="icon-head head-report-sales-sales"><?php echo $this->__('Validate Javascript')?> (<a href="http://closure-compiler.appspot.com" target="_blank">Closure Compiler</a>)</h3>
+                </td>
+                <td class="form-buttons"><?php echo $this->getButtonsHtml() ?></td>
+            </tr>
+        </table>
+    </div>
+    <div id="splitspan-holder" class="content-holder">
+        <div id="col-input" class="entry-edit splitspan" style="width: 600px">
+            <div class="fieldset">
+                <div id="compiling-options" class="compiler-options">
+                    <div class="input-holder">
+                        <label><?php echo $this->__('Select an Option')?>:</label>
+                        <select class="data" name="option">
+                            <option value="all"><?php echo $this->__('Every Javascript File')?></option>
+                            <option value="main_js"><?php echo $this->__('Main JS Files')?> (/js/*)</option>
+                            <option value="skin_frontend_js"><?php echo $this->__('Skin Frontend JS Files')?> (/skin/frontend/*)</option>
+                            <option value="skin_adminhtml_js"><?php echo $this->__('Skin Frontend JS Files')?> (/skin/adminhtml/*)</option>
+                            <option value="custom"><?php echo $this->__('Custom')?></option>
+                            <option value="add_file"><?php echo $this->__('Specific File')?></option>
+                        </select>
+                        <button id="get-js-files" class="scalable " style="" type="button" title="">
+                            <span><span><?php echo $this->__('Get JS Files')?></span></span>
+                        </button>
+                    </div>
+                    <div class="input-holder file-path">
+                        <label><?php echo $this->__('File path(relative)')?>:</label>
+                        <input id="file_path" type="text" name="file_path" />
+                        <button id="add-js-file" class="scalable" type="button" title="<?php echo $this->__('Add')?>">
+                            <span><span><?php echo $this->__('Add')?></span></span>
+                        </button>
+                    </div>
+                    <div class="input-holder">
+                        <label><?php echo $this->__('Optimization')?>:</label>
+                        <select class="data" name="options[compilation_level]">
+                            <option value="WHITESPACE_ONLY"><?php echo $this->__('Whitespace only')?></option>
+                            <option value="SIMPLE_OPTIMIZATIONS" selected="selected"><?php echo $this->__('Simple')?></option>
+                        </select>
+                    </div>
+                    <div class="input-holder">
+                        <label><?php echo $this->__('Warning level')?>:</label>
+                        <select class="data" name="options[warning_level]">
+                            <option value="DEFAULT" selected="selected"><?php echo $this->__('Default')?></option>
+                            <option value="VERBOSE"><?php echo $this->__('Verbose')?></option>
+                        </select>
+                    </div>
+                    <div class="input-holder input-formatting">
+                        <label><?php echo $this->__('Formatting')?>:</label>
+                        <span><input class="checkbox data" type="checkbox" name="options[formatting][pretty_print]" value="pretty_print" />Pretty print</span>
+                        <span><input class="checkbox data" type="checkbox" name="options[formatting][print_input_delimiter]" value="print_input_delimiter" />Print input delimiter</span>
+                    </div>
+                    <div class="input-holder">
+                        <button id="compiling-start" class="scalable " style="display: none;" type="button" title="">
+                            <span><span><?php echo $this->__('Start')?></span></span>
+                        </button>
+                        <button id="compiling-stop" class="scalable " style="display: none;" type="button" title="">
+                            <span><span><?php echo $this->__('Stop')?></span></span>
+                        </button>
+                        <button id="compile-custom" class="scalable " style="" type="button" title="">
+                            <span><span><?php echo $this->__('Compile')?></span></span>
+                        </button>
+                    </div>
+                </div>
+                <div class="custom-code">
+                    <label><?php echo $this->__('Custom')?>:</label>
+                    <textarea class="data" name="source-code" spellcheck="false" rows="15" cols="70" id="source-code"></textarea>
+                </div>
+            </div>
+        </div>
+        <div class="col-resize-handle">&nbsp;</div>
+        <div id="col-output" class="entry-edit splitspan">
+            <div class="output-header">
+                <div style="float: right">
+                    <button id="clear-all" class="scalable" type="button" title="<?php echo $this->__('Clear')?>">
+                        <span><span><?php echo $this->__('Clear')?></span></span>
+                    </button>
+                </div>
+                <div class="process-info">
+                    <div class="data">
+                        <?php echo $this->__('Progress: Files')?> <span id="total-processed" class="total-processed"></span> <?php echo $this->__('of')?> <span id="total-fileCount" class=""></span>
+                    </div>
+                    <div>
+                        <ul id="result_tab" class="tabs-horiz">
+                            <li>
+                                <a data-key="all" class="tab-item-link active" title="Show All" href="#"><span><?php echo $this->__('All')?></span></a>
+                            </li>
+                            <li>
+                                <a data-key="processing" class="tab-item-link" title="Show All" href="#"><span><?php echo $this->__('Processing')?> (<span id="total-process" class="total-process">0</span>)</span></a>
+                            </li>
+                            <li>
+                                <a data-key="success" class="tab-item-link" title="Show only success" href="#"><span><?php echo $this->__('Success')?> (<span id="total-success" class="total-success">0</span>)</span></a>
+                            </li>
+                            <li>
+                                <a data-key="warning" class="tab-item-link" title="Show all warnings" href="#"><span><?php echo $this->__('Warnings')?> (<span id="total-warning" class="total-warning">0</span>)</span></a>
+                            </li>
+                            <li>
+                                <a data-key="error" class="tab-item-link" title="Show all errors" href="#"><span><?php echo $this->__('Errors')?> (<span id="total-error" class="total-error">0</span>)</span></a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="output-container">
+                <div class="fieldset">
+                    <div class="output-files">
+                        <ul id="js-files" data-key="all">                    
+                        </ul>
+                        <div id="validate-js-file-template" style="display: none;">
+                            <?php echo $this->getChildHtml('js_file_template')?>
+                        </div>
+                    </div>
+                    <div id="output-custom" class="output-custom">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 <script>
-	
-	$(document).observe('dom:loaded', function(){
-		new _ecocodeMinify.validator();
-	});
+    
+    $(document).observe('dom:loaded', function(){
+        new _ecocodeMinify.validator();
+    });
 
 </script>

@@ -68,19 +68,19 @@ class Ecocode_Minify_Model_Compiler_Js extends Ecocode_Minify_Model_Compiler_Abs
 			
 			if(!file_exists($outputFile)){
 				$this->logError(' Minifing JS for ' . $url . 'failed, maybe java is not installed!', $details);
-				return FALSE;
+				return false;
 			}
             
 			if($sizeBefore == filesize($outputFile) || filesize($outputFile) == 0){
 				$this->logError('Minifing JS failed! Serving uncompiled file', $details);
-				return FALSE;
+				return false;
 			}
             
-			return TRUE;			
+			return true;
 			
 		} catch(Exception $e){
 			$this->logError($e->getMessage(), $e->getTraceAsString());
-			return FALSE;
+			return false;
 		}
 	}
     

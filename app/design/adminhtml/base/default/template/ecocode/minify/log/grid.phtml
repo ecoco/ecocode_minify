@@ -93,7 +93,7 @@ $numColumns = sizeof($this->getColumns());
                     <?php foreach ($this->getColumns() as $_column): ?>
                         <th<?php echo $_column->getHeaderHtmlProperty() ?>><span class="nobr"><?php echo $_column->getHeaderHtml() ?></span></th>
                     <?php endforeach; ?>
-                    	<th style="width: 125px;"></th>
+                        <th style="width: 125px;"></th>
                     </tr>
                 <?php endif; ?>
                 <?php if ($this->getFilterVisibility()): ?>
@@ -101,7 +101,7 @@ $numColumns = sizeof($this->getColumns());
                     <?php $i=0;foreach ($this->getColumns() as $_column): ?>
                         <th<?php echo $_column->getHeaderHtmlProperty() ?>><?php echo $_column->getFilterHtml() ?></th>
                     <?php endforeach; ?>
-                    	<th></th>
+                        <th></th>
                     </tr>
                 <?php endif ?>
             </thead>
@@ -119,31 +119,31 @@ $numColumns = sizeof($this->getColumns());
         <?php if (($this->getCollection()->getSize()>0) && (!$this->getIsCollapsed())): ?>
         <?php foreach ($this->getCollection() as $_index=>$_item): ?>
             <tr title="<?php echo $this->getRowUrl($_item) ?>" data-status="<?php echo $_item->getType()?>" class="data-row <?php if ($_class = $this->getRowClass($_item)):?> <?php echo $_class; ?><?php endif;?>" >
-	            <?php $i=0;foreach ($this->getColumns() as $_column): ?>
-	
-	                <?php if ($this->shouldRenderCell($_item, $_column)):?>
-	                    <?php $_rowspan = $this->getRowspan($_item, $_column);?>
-	                    <td <?php echo ($_rowspan ? 'rowspan="' . $_rowspan . '" ' : '') ?>class="<?php echo $_column->getCssProperty() ?> <?php echo ++$i==$numColumns?'last':'' ?>">
-	                        <?php echo (($_html = $_column->getRowField($_item)) != '' ? $_html : '&nbsp;') ?>
-	                    </td>
-	                    <?php if ($this->shouldRenderEmptyCell($_item, $_column)):?>
-	                        <td colspan="<?php echo $this->getEmptyCellColspan($_item)?>" class="last"><?php echo $this->getEmptyCellLabel()?></td>
-	                    <?php endif;?>
-	                <?php endif;?>
-	
-	            <?php endforeach; ?>
-				<td class="a-right">				
-					<?php if($_item->getDetails()):?>		
-						<button data-id="<?php echo $_item->getId()?>" class="show-log-details scalable" type="button" title="">
-							<span class="details-show"><span><?php echo $this->__('Show Details')?></span></span>
-							<span class="details-hide"><span><?php echo $this->__('Hide Details')?></span></span>
-						</button>
-					<?php endif;?>
-				</td>
+                <?php $i=0;foreach ($this->getColumns() as $_column): ?>
+    
+                    <?php if ($this->shouldRenderCell($_item, $_column)):?>
+                        <?php $_rowspan = $this->getRowspan($_item, $_column);?>
+                        <td <?php echo ($_rowspan ? 'rowspan="' . $_rowspan . '" ' : '') ?>class="<?php echo $_column->getCssProperty() ?> <?php echo ++$i==$numColumns?'last':'' ?>">
+                            <?php echo (($_html = $_column->getRowField($_item)) != '' ? $_html : '&nbsp;') ?>
+                        </td>
+                        <?php if ($this->shouldRenderEmptyCell($_item, $_column)):?>
+                            <td colspan="<?php echo $this->getEmptyCellColspan($_item)?>" class="last"><?php echo $this->getEmptyCellLabel()?></td>
+                        <?php endif;?>
+                    <?php endif;?>
+    
+                <?php endforeach; ?>
+                <td class="a-right">                
+                    <?php if($_item->getDetails()):?>        
+                        <button data-id="<?php echo $_item->getId()?>" class="show-log-details scalable" type="button" title="">
+                            <span class="details-show"><span><?php echo $this->__('Show Details')?></span></span>
+                            <span class="details-hide"><span><?php echo $this->__('Hide Details')?></span></span>
+                        </button>
+                    <?php endif;?>
+                </td>
             </tr>
-			<tr id="log-details-<?php echo $_item->getId()?>" class="log-details" style="display: none;">
-				<td colspan="0"><?php echo $_item->getDetails();?></td>
-			</tr>
+            <tr id="log-details-<?php echo $_item->getId()?>" class="log-details" style="display: none;">
+                <td colspan="0"><?php echo $_item->getDetails();?></td>
+            </tr>
             <?php if ($this->shouldRenderSubTotal($_item)): ?>
                 <tr class="subtotals">
                     <?php $i = 0; foreach ($this->getSubTotalColumns() as $_column): ?>

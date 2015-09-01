@@ -1,4 +1,4 @@
-Ecocode Minify(v. 0.0.3 beta)
+Ecocode Minify(v. 0.0.4 beta)
 =============
 
 Overview
@@ -12,10 +12,10 @@ possible compiling errors. Its recommend to at least scan all of your js files o
 
 ## Tested with:
 * Magento Community Edition 1.7.0.2
-
+* Magento Community Edition 1.9.0.1
 ## Requirements
 
-* Java
+* Java >= 7
 
 ## Features
 * Minify and compiles js files on the fly
@@ -33,10 +33,10 @@ possible compiling errors. Its recommend to at least scan all of your js files o
 ![Compiler Warnings](http://ecocode.de/magento_modules/ecocode_minify/compiler_warnings.jpg)
 ## Notes
 
-* Minifing is disabled by default. Tomake it active go to System->Configuration->Developer->JavaScript/CSS Settings and
+* Minifing is disabled by default. To make it active go to System->Configuration->Developer->JavaScript/CSS Settings and
 	set "Merge * Files" to "Yes" and then "Minify * Files" to "Yes"
-* The log functionality is using mysql table due to prevent logsplitting on multiserver environments
-* The warmup functionality will be less effectiv multiserver environments unless you store your merged files in a central place
+* The log functionality is using mysql table due to prevent log splitting on multi server environments
+* The warmup functionality will be less effective multi server environments unless you store your merged files in a central place
 * A new suffix well be generated when you click the "Flush JavaScript/CSS Cache" button in you magento backend cache control section
 * The filesize is included in the merged filename so changing a js/css file will invalidate the involved merged files and new ones will be generated.
 * If a file cannot be compiled the the uncompiled merged version will be served
@@ -65,7 +65,7 @@ Simply clone the repo somewhere and copy the content in your magento root direct
 
 #### Using [Magento Connect](http://www.magentocommerce.com/magento-connect/ "Magento Connect")
 
-comming soon
+coming soon
 
 ## Author
 
@@ -74,7 +74,7 @@ comming soon
 
 ## License
 
-Copyright(C) 2013 Ecocode GbR (http://ecocode.de)
+Copyright(C) 2013 Ecocode GmbH (http://ecocode.de)
 
 Licensed under the under the MIT License.
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), 

@@ -1,58 +1,58 @@
 <?xml version="1.0"?>
 <config>
-	<menu>
-		<system>
-			<children>
-				<ecocode_minify translate="title" module="ecocode_minify">
-					<title>Minify</title>
-					<sort_order>100</sort_order>
-					<children>
-						<validate  translate="title" module="ecocode_minify">
-							<title>Validate JS</title>
-							<sort_order>10</sort_order>
-							<action>EcoMinify/adminhtml_validate/index</action>
-						</validate>
-						<log translate="title" module="ecocode_minify">
-							<title>Minify Log</title>
-							<sort_order>20</sort_order>
-							<action>EcoMinify/adminhtml_log/index</action>
-						</log>
-					</children>
-				</ecocode_minify>
-			</children>
-		</system>
-	</menu>
-	<acl>
-		<resources>
-			<admin>
-				<children>
-					<system>
-						<children>
-							<config>
-								<children>
-									<ecocode_minify translate="title" module="ecocode_minify">
-										<title>Ecocode Minify</title>
-									</ecocode_minify>
-								</children>
-							</config>
-							<ecocode_minify translate="title" module="ecocode_minify">
-								<title>Ecocode Minify</title>
-								<sort_order>200</sort_order>
-								<children>
-									<validate translate="title" module="ecocode_minify">
-										<title>Validate CSS/JS Files</title>
-										<sort_order>10</sort_order>
-									</validate>
-									<log translate="title" module="ecocode_minify">
-										<title>Read Log</title>
-										<sort_order>20</sort_order>
-									</log>
-								</children>
-							</ecocode_minify>
-						</children>
-					</system>
-				</children>
-			</admin>
-		</resources>
-	</acl>
+    <menu>
+        <system>
+            <children>
+                <ecocode_minify translate="title" module="ecocode_minify">
+                    <title>Minify</title>
+                    <sort_order>100</sort_order>
+                    <children>
+                        <validate translate="title" module="ecocode_minify">
+                            <title>Validate JS</title>
+                            <sort_order>10</sort_order>
+                            <action>EcoMinify/adminhtml_validate/index</action>
+                        </validate>
+                        <log translate="title" module="ecocode_minify">
+                            <title>Minify Log</title>
+                            <sort_order>20</sort_order>
+                            <action>EcoMinify/adminhtml_log/index</action>
+                        </log>
+                    </children>
+                </ecocode_minify>
+            </children>
+        </system>
+    </menu>
+    <acl>
+        <resources>
+            <admin>
+                <children>
+                    <system>
+                        <children>
+                            <config>
+                                <children>
+                                    <ecocode_minify translate="title" module="ecocode_minify">
+                                        <title>Ecocode Minify</title>
+                                    </ecocode_minify>
+                                </children>
+                            </config>
+                            <ecocode_minify translate="title" module="ecocode_minify">
+                                <title>Ecocode Minify</title>
+                                <sort_order>200</sort_order>
+                                <children>
+                                    <validate translate="title" module="ecocode_minify">
+                                        <title>Validate CSS/JS Files</title>
+                                        <sort_order>10</sort_order>
+                                    </validate>
+                                    <log translate="title" module="ecocode_minify">
+                                        <title>Read Log</title>
+                                        <sort_order>20</sort_order>
+                                    </log>
+                                </children>
+                            </ecocode_minify>
+                        </children>
+                    </system>
+                </children>
+            </admin>
+        </resources>
+    </acl>
 </config>

@@ -31,8 +31,8 @@ class Ecocode_Minify_Model_Log extends Mage_Core_Model_Abstract
 	public function log($message, $details = null, $type = 'debug')
     {
 		if(!Mage::getStoreConfigFlag('ecocode_minify/settings/debug_log') && $type != 'error') return;
-		if(!is_string($message)) $message = print_r($message, TRUE);
-		if(!is_string($details)) $details = print_r($details, TRUE);
+		if(!is_string($message)) $message = print_r($message, true);
+		if(!is_string($details)) $details = print_r($details, true);
 		
 		if($this->isWarmUp()) $type .= '(warmup)';
 		$this->getLogger()->log($message, $details, $type);
@@ -72,6 +72,6 @@ class Ecocode_Minify_Model_Log extends Mage_Core_Model_Abstract
 	
 	public function isWarmUp()
     {
-		return Mage::app()->getRequest()->getParam('warmup') ? TRUE : FALSE;
+		return Mage::app()->getRequest()->getParam('warmup') ? true : false;
 	}
 }
