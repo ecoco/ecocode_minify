@@ -3,4 +3,5 @@
 .project
 .settings/*
 .idea
+/.vagrant
 .vagrant-user.yaml
