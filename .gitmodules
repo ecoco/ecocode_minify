@@ -1,4 +1,0 @@
-[submodule ".vagrant/utilities"]
-	path = .vagrant/utilities
-	url = git@bitbucket.org:ecocode/vagrant-utilities.git
-	branch = master

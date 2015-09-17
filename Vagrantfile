@@ -3,8 +3,12 @@
 
 
 #we need to clone our submodules before we can continue
-system('git submodule update --init --recursive --remote') || exit!
-system('git submodule foreach --recursive git checkout master') || exit!
+if File.exist?('.vagrant/utilities')
+    system('(cd .vagrant/utilities && git pull origin master)')|| exit!
+else
+    system('git clone git@bitbucket.org:ecocode/vagrant-utilities.git .vagrant/utilities') || exit!
+
+end
 
 require './.vagrant/utilities/magento-module'
 
