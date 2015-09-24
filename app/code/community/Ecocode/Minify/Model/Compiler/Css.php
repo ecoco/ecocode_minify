@@ -77,7 +77,7 @@ class Ecocode_Minify_Model_Compiler_Css extends Ecocode_Minify_Model_Compiler_Ab
 
         $output = array();
         $status = 0;
-        $cmd = sprintf('java -jar %s %s --type css --line-break 500 -o ', $outputFile, $compilerJAR);
+        $cmd = sprintf('java -jar %s --type css --line-break 500 -o %s %s', $compilerJAR, $outputFile, $inputFile);
         exec(escapeshellcmd($cmd) . ' 2>&1', $output, $status);
         return array($status, $output);
     }
