@@ -75,13 +75,13 @@
     </global>
     <admin>
         <routers>
-            <ecocode_minify>
-                <use>admin</use>
+            <adminhtml>
                 <args>
-                    <module>Ecocode_Minify</module>
-                    <frontName>EcoMinify</frontName>
+                    <modules>
+                        <ecocode_minify after="Mage_Adminhtml">EcocodeMinify_Adminhtml</ecocode_minify>
+                    </modules>
                 </args>
-            </ecocode_minify>
+            </adminhtml>
         </routers>
     </admin>
     <adminhtml>
