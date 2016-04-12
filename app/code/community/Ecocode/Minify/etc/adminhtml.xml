@@ -10,12 +10,12 @@
                         <validate translate="title" module="ecocode_minify">
                             <title>Validate JS</title>
                             <sort_order>10</sort_order>
-                            <action>EcoMinify/adminhtml_validate/index</action>
+                            <action>adminhtml/minifyvalidate</action>
                         </validate>
                         <log translate="title" module="ecocode_minify">
                             <title>Minify Log</title>
                             <sort_order>20</sort_order>
-                            <action>EcoMinify/adminhtml_log/index</action>
+                            <action>adminhtml/minifylog</action>
                         </log>
                     </children>
                 </ecocode_minify>
