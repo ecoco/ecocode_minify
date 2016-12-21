@@ -1,6 +1,6 @@
 <?php
 
-class Ecocode_Minify_Adminhtml_ValidateController extends Mage_Adminhtml_Controller_Action
+class Ecocode_Minify_Adminhtml_MinifyvalidateController extends Mage_Adminhtml_Controller_Action
 {
     private $_functionWhiteList = array(
         'getJsDir'      => 'getJsDir',

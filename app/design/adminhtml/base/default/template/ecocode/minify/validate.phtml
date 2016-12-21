@@ -1,5 +1,5 @@
 <script>
-    var ajaxRunfuncUrl = '<?php echo  Mage::helper("adminhtml")->getUrl('*/adminhtml_validate/runfunc/'); ?>';
+    var ajaxRunfuncUrl = '<?php echo  Mage::helper("adminhtml")->getUrl('*/minifyvalidate/runfunc/'); ?>';
 </script>
 <div class="ecocode-minify">
     <div class="content-header">
@@ -110,7 +110,7 @@
             <div class="output-container">
                 <div class="fieldset">
                     <div class="output-files">
-                        <ul id="js-files" data-key="all">                    
+                        <ul id="js-files" data-key="all">
                         </ul>
                         <div id="validate-js-file-template" style="display: none;">
                             <?php echo $this->getChildHtml('js_file_template')?>
@@ -124,7 +124,7 @@
     </div>
 </div>
 <script>
-    
+
     $(document).observe('dom:loaded', function(){
         new _ecocodeMinify.validator();
     });

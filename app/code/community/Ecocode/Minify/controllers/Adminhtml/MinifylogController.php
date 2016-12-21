@@ -1,6 +1,6 @@
 <?php
 
-class Ecocode_Minify_Adminhtml_LogController extends Mage_Adminhtml_Controller_Action
+class Ecocode_Minify_Adminhtml_MinifylogController extends Mage_Adminhtml_Controller_Action
 {
     public function indexAction()
     {
