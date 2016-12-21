@@ -85,7 +85,7 @@ class Ecocode_Minify_Helper_Data extends Mage_Core_Helper_Abstract
         $versionString = $output[0];
 
         //the command should return a version number. did we get it?
-        if (preg_match("/java version/i", $versionString) !== 1) {
+        if (preg_match("/version/i", $versionString) !== 1) {
             return $this->canRunJava[$minJavaVersion] = false;
         }
 

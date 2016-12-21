@@ -201,7 +201,6 @@ class Ecocode_Minify_Model_Design_Package extends Mage_Core_Model_Design_Package
     public function minifyJS($targetFilename)
     {
         $tmpFile = str_replace('.js', '.tmp.js', $targetFilename);
-
         if (Mage::getModel('ecocode_minify/compiler_js')->minify($targetFilename, $tmpFile)) {
             if (!rename($tmpFile, $targetFilename)) {
                 Mage::getSingleton('ecocode_minify/log')->log('Minify js file could not be renamed');
