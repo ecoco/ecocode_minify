@@ -31,6 +31,7 @@ possible compiling errors. Its recommend to at least scan all of your js files o
 ![Validator](https://raw.githubusercontent.com/ecoco/ecocode_minify/master/doc/images/validator.jpg)
 ![Compiler Success](https://raw.githubusercontent.com/ecoco/ecocode_minify/master/doc/images/compiler_success.jpg)
 ![Compiler Warnings](https://raw.githubusercontent.com/ecoco/ecocode_minify/master/doc/images/compiler_warnings.jpg)
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fecoco%2Fecocode_minify.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Fecoco%2Fecocode_minify?ref=badge_shield)
 ## Notes
 
 * Minifing is disabled by default. To make it active go to System->Configuration->Developer->JavaScript/CSS Settings and
@@ -86,3 +87,6 @@ The above copyright notice and this permission notice shall be included in all c
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, 
 FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, 
 WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fecoco%2Fecocode_minify.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2Fecoco%2Fecocode_minify?ref=badge_large)
